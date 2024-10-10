@@ -344,7 +344,7 @@ extern bool cuda_prof;
 
 #include "Species.H"
 
-#if HAVE_LIBCUDA==1
+#if HAVE_LIBCUDA==1 && defined (__NVCC__)
 #include <cudaUtil.cuH>
 extern thrust::device_vector<int> cuDstepL, cuDstepN;
 extern int cudaGlobalDevice;

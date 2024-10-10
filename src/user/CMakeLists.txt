@@ -13,8 +13,12 @@ set (common_LINKLIBS ${DEP_LIB} OpenMP::OpenMP_CXX MPI::MPI_CXX
   exputil EXPlib yaml-cpp)
 
 if(ENABLE_CUDA)
-  list(APPEND common_INCLUDE_DIRS ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES} ${CUDAToolkit_INCLUDE_DIRS})
-  list(APPEND common_LINKLIB CUDA::cudart CUDA::nvToolsExt)
+  list(APPEND common_LINKLIB CUDA::cudart)
+  if (CUDAToolkit_VERSION VERSION_GREATER_EQUAL 12)
+    list(APPEND common_LINKLIB CUDA::nvtx3)
+  else ()
+    list(APPEND common_LINKLIB  CUDA::nvToolsExt)
+  endif ()
 endif()
 
 set(user_SRC      UserTest.cc)

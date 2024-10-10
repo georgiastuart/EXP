@@ -115,7 +115,7 @@ private:
   vector<double> pos, psa, vel;
   
   void accumulate_cpu(double time, Component* c);
-#if HAVE_LIBCUDA==1
+#if HAVE_LIBCUDA==1 && defined (__NVCC__)
   void accumulate_gpu(double time, Component* c);
 #endif
 
