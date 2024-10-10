@@ -19,6 +19,9 @@ if(ENABLE_CUDA)
   else ()
     list(APPEND common_LINKLIB  CUDA::nvToolsExt)
   endif ()
+  set_source_files_properties(UserBar.cc UserDisk.cc UserHalo.cc 
+    UserLogPot.cc UserMNdisk.cc UserMW.cc UserTest.cc UserTestCuda.cc 
+    PROPERTIES LANGUAGE CUDA)
 endif()
 
 set(user_SRC      UserTest.cc)
